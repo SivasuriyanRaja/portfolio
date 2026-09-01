@@ -1,6 +1,6 @@
 # Portfolio – Sivasuriyan Raja
 
-A full-stack portfolio website built with React + TypeScript (Vite) for the frontend and Node.js + Express + MongoDB for the backend.
+A static portfolio website built with React + TypeScript (Vite) and Tailwind CSS.
 
 ---
 
@@ -9,10 +9,7 @@ A full-stack portfolio website built with React + TypeScript (Vite) for the fron
 | Layer      | Technology                                   |
 |------------|----------------------------------------------|
 | Frontend   | React 18, TypeScript, Vite, Tailwind CSS v4, Framer Motion, Lucide React |
-| Backend    | Node.js, Express.js, TypeScript              |
-| Database   | MongoDB Atlas (via Mongoose)                 |
-| Validation | Zod                                          |
-| Deployment | Vercel (frontend) · Render (backend)         |
+| Deployment | Vercel (or any static hosting)               |
 
 ---
 
@@ -20,8 +17,7 @@ A full-stack portfolio website built with React + TypeScript (Vite) for the fron
 
 ```
 portfolio/
-├── frontend/   # React Vite SPA
-└── backend/    # Express API server
+└── frontend/   # React Vite SPA
 ```
 
 ---
@@ -30,41 +26,17 @@ portfolio/
 
 ### Prerequisites
 - Node.js >= 18
-- A MongoDB Atlas cluster (or local MongoDB)
 
 ### 1. Clone & Install
 
 ```bash
-cd frontend && npm install
-cd ../backend && npm install
-```
-
-### 2. Configure Environment Variables
-
-**Backend**
-```bash
-cd backend
-cp .env.example .env
-# Edit .env: add your MONGODB_URI and ADMIN_SECRET
-```
-
-**Frontend**
-```bash
 cd frontend
-# Edit .env: set VITE_API_URL to your backend URL (default: http://localhost:5000)
+npm install
 ```
 
-### 3. Run Development Servers
-
-Open two terminals:
+### 2. Run Development Server
 
 ```bash
-# Terminal 1 – Backend
-cd backend
-npm run dev
-
-# Terminal 2 – Frontend
-cd frontend
 npm run dev
 ```
 
@@ -75,57 +47,29 @@ Visit: http://localhost:5173
 ## Production Build
 
 ```bash
-# Frontend
-cd frontend && npm run build
-
-# Backend
-cd backend && npm run build && npm start
+cd frontend
+npm run build
 ```
 
----
-
-## Admin Dashboard
-
-Navigate to `/admin` and enter your `ADMIN_SECRET` to log in.
-
-**Features:**
-- Add / Edit / Delete projects
-- View and manage contact messages (mark as read/replied)
+This will create a `dist/` directory that can be deployed to any static host.
 
 ---
 
-## API Routes
+## Features
 
-| Method | Route                       | Auth     | Description            |
-|--------|-----------------------------|----------|------------------------|
-| GET    | /api/health                 | Public   | Health check           |
-| GET    | /api/projects               | Public   | List all projects      |
-| GET    | /api/projects/:slug         | Public   | Single project         |
-| POST   | /api/contact                | Public   | Submit contact form    |
-| POST   | /api/admin/login            | —        | Admin login            |
-| GET    | /api/admin/projects         | Admin    | All projects (admin)   |
-| POST   | /api/admin/projects         | Admin    | Create project         |
-| PUT    | /api/admin/projects/:id     | Admin    | Update project         |
-| DELETE | /api/admin/projects/:id     | Admin    | Delete project         |
-| GET    | /api/admin/messages         | Admin    | View messages          |
-| PUT    | /api/admin/messages/:id     | Admin    | Update message status  |
-| DELETE | /api/admin/messages/:id     | Admin    | Delete message         |
+- **Responsive Design**: Built with Tailwind CSS.
+- **Animations**: Powered by Framer Motion.
+- **Project Showcase**: A hardcoded list of projects presented beautifully.
+- **Contact Form**: Uses standard `mailto:` action so no backend is required.
 
 ---
 
 ## Deployment
 
-### Frontend → Vercel
-1. Push `frontend/` to GitHub.
-2. Import the repo in Vercel, set **root directory** to `frontend`.
-3. Add `VITE_API_URL` environment variable pointing to your Render backend URL.
-
-### Backend → Render
-1. Push `backend/` to GitHub.
-2. Create a new **Web Service** in Render, set **root directory** to `backend`.
-3. Build command: `npm install && npm run build`
-4. Start command: `npm start`
-5. Add environment variables: `MONGODB_URI`, `ADMIN_SECRET`, `NODE_ENV=production`, `PORT=10000`.
+### Deploying to Vercel
+1. Push your repository to GitHub.
+2. Import the repo in Vercel, set the **root directory** to `frontend`.
+3. Vercel will automatically detect Vite and build/deploy your site!
 
 ---
 

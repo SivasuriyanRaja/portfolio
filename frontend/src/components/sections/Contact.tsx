@@ -1,18 +1,39 @@
 import { motion } from 'framer-motion';
-import { GitBranch, Mail, Send } from 'lucide-react';
+import { GitBranch, Mail, Send, Loader2 } from 'lucide-react';
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const Contact = () => {
-  // Build a mailto link on submit so no backend is needed
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
     const form = e.currentTarget;
     const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
     const subject = (form.elements.namedItem('subject') as HTMLInputElement).value;
     const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
 
-    const body = `Hi Sivasuriyan,\n\nName: ${name}\n\n${message}`;
-    const mailto = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.location.href = mailto;
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+
+      if (response.ok) {
+        toast.success('Message sent successfully!');
+        form.reset();
+      } else {
+        toast.error('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      toast.error('An error occurred. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -137,10 +158,20 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="w-full bg-primary text-black font-body font-bold uppercase tracking-wider py-4 rounded-xl hover:bg-cream transition-colors flex items-center justify-center gap-2 group"
+              disabled={isSubmitting}
+              className="w-full bg-primary text-black font-body font-bold uppercase tracking-wider py-4 rounded-xl hover:bg-cream transition-colors flex items-center justify-center gap-2 group disabled:opacity-70 disabled:cursor-not-allowed"
             >
-              <Send size={18} className="group-hover:translate-x-1 transition-transform" />
-              Send Message
+              {isSubmitting ? (
+                <>
+                  <Loader2 size={18} className="animate-spin" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  <Send size={18} className="group-hover:translate-x-1 transition-transform" />
+                  Send Message
+                </>
+              )}
             </button>
           </form>
         </motion.div>
