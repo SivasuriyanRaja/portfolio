@@ -13,7 +13,7 @@ const About = () => {
           transition={{ duration: 0.8 }}
           className="space-y-6"
         >
-          <h2 className="font-display uppercase text-5xl md:text-7xl mb-8">ABOUT ME</h2>
+          <h2 className="font-display uppercase text-4xl md:text-7xl mb-8">ABOUT ME</h2>
           
           <div className="font-body text-cream/80 space-y-6 text-lg leading-relaxed">
             <p>

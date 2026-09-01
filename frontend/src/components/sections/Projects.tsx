@@ -180,7 +180,7 @@ const Projects = () => {
               transition={{ duration: 0.6 }}
               className="text-center mb-20"
             >
-              <h2 className="font-display uppercase text-6xl md:text-8xl text-cream">MY LATEST PROJECT</h2>
+              <h2 className="font-display uppercase text-5xl md:text-8xl text-cream">MY LATEST PROJECT</h2>
               <p className="font-body text-cream/50 mt-4 text-sm tracking-widest uppercase">
                 Hover a card to explore
               </p>

@@ -38,7 +38,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-24 px-6 md:px-12 bg-[#0a0a0a]">
-      <div className="container mx-auto grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+      <div className="container mx-auto grid md:grid-cols-2 gap-10 md:gap-16 items-center max-w-6xl">
 
         {/* Left: Info */}
         <motion.div
@@ -47,7 +47,7 @@ const Contact = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <h2 className="font-display uppercase text-6xl md:text-8xl text-cream mb-6 leading-[0.9]">
+          <h2 className="font-display uppercase text-5xl md:text-8xl text-cream mb-6 leading-[0.9]">
             GET IN<br />
             <span className="text-primary">TOUCH</span>
           </h2>

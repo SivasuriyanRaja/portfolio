@@ -15,7 +15,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-primary font-script text-5xl md:text-8xl mb-[-30px] md:mb-[-60px] z-20"
+          className="text-primary font-script text-4xl sm:text-5xl md:text-8xl mb-[-20px] sm:mb-[-30px] md:mb-[-60px] z-20"
           style={{ transform: 'rotate(-10deg)' }}
         >
           Creative
@@ -26,7 +26,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="font-display uppercase text-[15vw] leading-none text-cream/90 tracking-normal"
+          className="font-display uppercase text-[18vw] md:text-[15vw] leading-none text-cream/90 tracking-normal"
         >
           PORTFOLIO
         </motion.h1>
@@ -36,7 +36,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="absolute top-[25%] w-64 h-80 md:w-96 md:h-[32rem] rounded-[100px] overflow-hidden border-4 border-black/50 shadow-2xl"
+          className="absolute top-[20%] sm:top-[25%] w-56 h-72 sm:w-64 sm:h-80 md:w-96 md:h-[32rem] rounded-[80px] sm:rounded-[100px] overflow-hidden border-4 border-black/50 shadow-2xl"
         >
           <img 
             src="/profile.png" 
