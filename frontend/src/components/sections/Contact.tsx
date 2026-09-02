@@ -16,18 +16,21 @@ const Contact = () => {
     const subject = (form.elements.namedItem('subject') as HTMLInputElement).value;
     const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
 
-    const mailtoLink = `mailto:sivasuriyanraja569@gmail.com?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`)}`;
-
     try {
-      // Small delay to show the submitting state briefly and feel responsive
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      window.location.href = mailtoLink;
-      toast.success('Opening email client...');
-      form.reset();
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, subject, message }),
+      });
+
+      if (response.ok) {
+        toast.success('Message sent successfully!');
+        form.reset();
+      } else {
+        toast.error('Failed to send message. Please try again.');
+      }
     } catch (error) {
-      toast.error('Failed to open email client. Please try manually.');
+      toast.error('An error occurred. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
